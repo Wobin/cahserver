@@ -1,0 +1,11 @@
+{
+  "name": "cahserver",
+ "description": "",
+  "version": "0.0.1",
+  "main": "./server.js",
+   "engines": { "node": "0.8.x", "npm": "1.1.x"},
+  "dependencies": {
+    "matador": "*"
+  },
+  "private": true
+}
