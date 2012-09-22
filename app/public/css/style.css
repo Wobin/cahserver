@@ -1,0 +1,85 @@
+body {
+font-family: 'Open Sans Condensed', sans-serif; 
+font-weight:bold;
+ }
+
+.board {
+
+padding-right: 20px;
+}
+
+.black {
+background: black;
+color: white;
+border: solid white 2px;
+}
+
+.white {
+background: white;
+color: black;
+border: solid black 2px;
+}
+
+.card {  
+width: 200px; 
+min-height: 15em; 
+padding: 20 10 40 20;
+position:relative;
+float: left;
+}
+.line {
+font-size: 18pt;
+padding-bottom: 20px;
+}
+
+.conditions {
+position:absolute;
+right:10px;
+bottom:10px;
+}
+
+.condition { 
+float:right;
+clear: right;
+text-align: right;
+position:relative;
+padding-top: 9px;
+padding-right: 2.5em;
+ }
+
+.num{
+font-family: 'Source Sans Pro', sans-serif;
+color: black;
+background: white;
+text-align: center;
+border-radius: 50%;
+width: 1.3em;
+height: 1.3em;
+font-size: 16pt;
+position:absolute;
+right:5px;
+bottom:-3px;
+}
+
+.logo {
+bottom:10px;
+left:10px;
+height:2em;
+width:10em;
+position:absolute;
+background-size:100%;
+background-repeat: no-repeat;
+}
+
+.black .logo {
+background-image: url("Images/CAHLogoBlack.png");
+}
+
+.black .logo.short {
+background-image: url("Images/CAHLogoBlackShort.png");
+width: 5em;
+}
+
+.white .logo {
+background-image: url("Images/CAHLogoWhite.png");
+
