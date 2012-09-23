@@ -72,14 +72,14 @@ background-repeat: no-repeat;
 }
 
 .black .logo {
-background-image: url("Images/CAHLogoBlack.png");
+background-image: url("/Images/CAHLogoBlack.png");
 }
 
 .black .logo.short {
-background-image: url("Images/CAHLogoBlackShort.png");
+background-image: url("/Images/CAHLogoBlackShort.png");
 width: 5em;
 }
 
 .white .logo {
-background-image: url("Images/CAHLogoWhite.png");
+background-image: url("/Images/CAHLogoWhite.png");
 

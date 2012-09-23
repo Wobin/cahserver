@@ -1,5 +1,7 @@
 module.exports = function (app) {
   return {
-    '/': {'get': 'Home.index'}
+    '/': {'get': 'Card.index'},
+    '/AddCard/:Line/:Colour': {'get': 'Card.create'},
+    '/RemoveCard/:Line' : {'get': 'Card.delete'}
   }
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+</head>
+<body>
+<h1>Current Cards</h1>
+{{#BlackCards}}
+    <div class="board">
+    {{> BlackCard}}
+    {{> EditCard }}
+    </div>
+{{/BlackCards}}
+
+{{#WhiteCards}}
+    {{> WhiteCard}}
+    {{> EditCard}}
+{{/WhiteCards}}
+
+<h1>Add a card</h1>
+
+</body>
+</html>

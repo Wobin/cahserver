@@ -1,24 +1,32 @@
 module.exports = function (app, config) {
 
   return app.getModel("Application", true).extend(function(){
-      var schema = new this.Schema(
-         { line : {type : String, required : true, trim: true}}
-        ,{ conditions : {type :[condition], required: false}}
-      )
-      this.DBModel = this.mongoose.model('Card', schema )
-  })
-      .methods({
-          create: function(line, callback){
+      this.DBModel = this.mongoose.model('Card', new this.Schema(
+          { colour : String
+          , line : {type : String, required : true, trim: true}
+          , hasCondition : {type : Boolean, default : false}
+          , conditions : {type :[{condition: String, num : Number}], required: false}
+        }))
+    })
+        .methods({
+          create: function(line, colour, callback){
               var card = new this.DBModel({
+                  colour : colour,
                   line : line
               })
               card.save(callback)
           },
-          addNumericCondition: function(id, condition, num, callback) {
+          delete: function(line, callback) {
+              this.DBModel.findOneAndRemove({line : line }, callback)
+          },
+          addCondition: function(id, condition, num, callback) {
               var condition = new Condition({ condition: condition, num : num})
-              var card = this.DBModel.findById(id, callback).conditions.push(condition)
+              var card = this.DBModel.findById(id, callback);
+              card.conditions.push(condition);
+              card.hasCondition = true;
+              card.colour = "Black";
               card.save(callback)
           }
-      })
 
+  })
 }
