@@ -1,23 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{title}}</title>
-</head>
-<body>
 <h1>Current Cards</h1>
-{{#BlackCards}}
-    <div class="board">
-    {{> BlackCard}}
-    {{> EditCard }}
+<form action="/AddCondition" method="POST">
+    <ul class="board">
+        {{#BlackCards}}
+        {{> BlackCard}}
+        {{/BlackCards}}
+
+        {{#WhiteCards}}
+        {{> WhiteCard}}
+        {{/WhiteCards}}
+    </ul>
+    <br>
+
+    <div class="AddCondition">
+        <label for="Condition">Condition</label>
+        <input type="text" name="Condition">
+        <label for="Num">Num (optional)</label>
+        <input type="text" name="Num">
+        <input type="submit">
     </div>
-{{/BlackCards}}
-
-{{#WhiteCards}}
-    {{> WhiteCard}}
-    {{> EditCard}}
-{{/WhiteCards}}
-
+</form>
+<br>
 <h1>Add a card</h1>
+<form action="/AddCard" method="POST">
+    <div class="AddCard">
+        <label for="Line">Line</label>
+        <input type="text" name="Line">
+        <label for="Colour">Colour</label>
+        <input type="text" name="Colour">
+        <input type="submit">
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () { //DOM Ready
 
-</body>
-</html>
+        $(".board").gridster({
+            widget_margins:[10, 10],
+            widget_selector:"> li",
+            widget_base_dimensions:[200, 250],
+            min_cols:3
+        });
+
+    });
+</script>

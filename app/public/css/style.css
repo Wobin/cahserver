@@ -5,7 +5,23 @@ font-weight:bold;
 
 .board {
 
-padding-right: 20px;
+}
+.EditCard{
+    float:right;
+}
+.EditCard .delete{
+    float: right;
+    position:absolute;
+    right: 5px;
+}
+.EditCard .select{
+    float: right;
+    position: absolute;
+
+    right: 100px
+    }
+.grid {
+width: 800px;
 }
 
 .black {
@@ -25,7 +41,6 @@ width: 200px;
 min-height: 15em; 
 padding: 20 10 40 20;
 position:relative;
-float: left;
 }
 .line {
 font-size: 18pt;

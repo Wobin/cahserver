@@ -1,4 +1,7 @@
-<div class="black card">
+<li class="black card" data-row="{{rowcount}}" data-col="{{colcount}}" data-sizex="1" data-sizey="1">
+    {{#admin}}
+        {{> EditCard}}
+    {{/admin}}
     <div class="line">
         {{line}}
     </div>
@@ -15,4 +18,4 @@
         {{/num}}
     </div>
     {{/conditions}}
-</div>
+</li>

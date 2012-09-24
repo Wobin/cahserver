@@ -5,6 +5,7 @@ var matador = require('matador')
   , app = matador.createApp(__dirname, config, {})
   , port = argv.port || process.env.PORT || 3000
 
+
 // Register the matador cache helper.
 app.registerHelper('Cache', matador.helpers.CacheHelper)
 

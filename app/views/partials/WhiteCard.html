@@ -1,6 +1,9 @@
-<div class="white card">
+<li class="white card" data-row="{{rowcount}}" data-col="{{colcount}}" data-sizex="1" data-sizey="1">
+    {{#admin}}
+    {{> EditCard}}
+    {{/admin}}
     <div class="line">
         {{line}}
     </div>
     <span class="logo"></span>
-</div>
+</li>
