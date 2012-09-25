@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "cahserver",
  "description": "",
@@ -12,6 +13,26 @@
     "matador": "*",
     "step" : "*",
     "formidable" : "1.0.11"
+=======
+{ "name": "cahserver"
+, "version": "0.0.1"
+, "engines": ["node >= 0.4.0"]
+, "main": "server.js"
+, "dependencies":
+  { "ejs":              "*"
+  , "ejs-ext":          "*"
+  , "express":          "~2.x"
+  , "railway":          ">= 0.2.6"
+  , "jugglingdb":       ">= 0.1.0"
+  , "coffee-script":    ">= 1.1.1"
+>>>>>>> Ah, buggrit
   },
-  "private": true
+  "devDependencies":
+  { "nodeunit":         "*"
+  , "sinon":            "*"
+  , "semicov":          "*"
+  }
+, "scripts":
+  { "test": "nodeunit test/*/*"
+  }
 }
