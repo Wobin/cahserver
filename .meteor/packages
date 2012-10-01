@@ -8,6 +8,3 @@ backbone
 bootstrap
 jquery
 underscore
-accounts-base
-accounts-twitter
-accounts-ui
