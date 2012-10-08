@@ -1,7 +1,4 @@
-var require = ___meteor_bootstrap__.require;
-var _ = require("underscore");
-var BaseCards = BaseCards;
-var CardController = CardController;
+var GameController;
 (function (GameController) {
     var DB = new Meteor.Collection("Games");
     function ReImportCards() {
@@ -10,7 +7,6 @@ var CardController = CardController;
         });
     }
     GameController.ReImportCards = ReImportCards;
-})(exports.GameController || (exports.GameController = {}));
-
+})(GameController || (GameController = {}));
 
 //@ sourceMappingURL=GameController.js.map
