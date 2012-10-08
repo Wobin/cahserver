@@ -4,7 +4,7 @@ var GameController;
     function ReImportCards() {
         CardController.removeAllCards();
         _.each(BaseCards.WhiteCards, function (card) {
-            CardController.addCard(card.Line, "White");
+            CardController.addCard(card, "White");
             console.log("Adding Card: " + card.Line);
         });
     }
