@@ -33,7 +33,7 @@ var CardController;
     function getCard(id) {
         return DB.findOne({
             _id: id
-        }).fetch();
+        });
     }
     CardController.getCard = getCard;
     function addCard(Line, Colour) {
