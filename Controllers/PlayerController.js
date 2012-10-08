@@ -1,3 +1,4 @@
+var PlayerController;
 (function (PlayerController) {
     var DB = new Meteor.Collection("Players");
     function getPlayer(id) {
@@ -22,7 +23,6 @@
         }
     }
     PlayerController.getAll = getAll;
-})(exports.PlayerController || (exports.PlayerController = {}));
-
+})(PlayerController || (PlayerController = {}));
 
 //@ sourceMappingURL=PlayerController.js.map
