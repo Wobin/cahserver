@@ -15,4 +15,3 @@ if(Meteor.is_server) {
         GameController.ReImportCards();
     });
 }
-//@ sourceMappingURL=cahserver.js.map

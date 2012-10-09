@@ -36,6 +36,26 @@ var CardController;
         });
     }
     CardController.getCard = getCard;
+    function getAllBlackCards() {
+        return DB.find({
+            Colour: "Black"
+        }, {
+            fields: {
+                _id: 1
+            }
+        }).fetch();
+    }
+    CardController.getAllBlackCards = getAllBlackCards;
+    function getAllWhiteCards() {
+        return DB.find({
+            Colour: "White"
+        }, {
+            fields: {
+                _id: 1
+            }
+        }).fetch();
+    }
+    CardController.getAllWhiteCards = getAllWhiteCards;
     function addCard(Line, Colour) {
         var newCard = {
             Line: Line,
