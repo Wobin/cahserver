@@ -26,6 +26,13 @@ var PlayerController;
         return getPlayer(id);
     }
     PlayerController.addPlayer = addPlayer;
+    function deletePlayer(userName, password) {
+        DB.remove({
+            Username: userName,
+            Password: password
+        });
+    }
+    PlayerController.deletePlayer = deletePlayer;
     function getAll() {
         var allPlayers = DB.find({
         });
