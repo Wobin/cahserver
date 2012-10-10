@@ -1,8 +1,8 @@
 var CardController;
 (function (CardController) {
     var DB = new Meteor.Collection("Cards");
-    function addCondition(Card, Condition, Value) {
-        DB.update(Card._id, {
+    function addCondition(CardId, Condition, Value) {
+        DB.update(CardId, {
             $addToSet: {
                 Conditions: {
                     Condition: Condition,
@@ -12,8 +12,8 @@ var CardController;
         });
     }
     CardController.addCondition = addCondition;
-    function removeCondition(Card, Condition) {
-        DB.update(Card._id, {
+    function removeCondition(CardId, Condition) {
+        DB.update(CardId, {
             $pull: {
                 Conditions: {
                     Condition: Condition
@@ -65,6 +65,10 @@ var CardController;
         return getCard(id);
     }
     CardController.addCard = addCard;
+    function removeCard(cardId) {
+        DB.remove(cardId);
+    }
+    CardController.removeCard = removeCard;
     function removeAllCards() {
         DB.remove({
         });

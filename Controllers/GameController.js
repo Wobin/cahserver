@@ -19,7 +19,7 @@ var GameController;
             var newCard = CardController.addCard(card.Line, "Black");
             console.log("Adding MultiCard: " + card.Line);
             _.each(card.Conditions, function (condition) {
-                CardController.addCondition(newCard, condition.Condition, condition.Value);
+                CardController.addCondition(newCard._id, condition.Condition, condition.Value);
             });
         });
     }

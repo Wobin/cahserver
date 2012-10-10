@@ -12,6 +12,7 @@ if(Meteor.is_client) {
 }
 if(Meteor.is_server) {
     Meteor.startup(function () {
-        GameController.ReImportCards();
+        TestSuite.RunTests();
     });
 }
+//@ sourceMappingURL=cahserver.js.map

@@ -4,12 +4,23 @@ var PlayerController;
     function getPlayer(id) {
         return DB.findOne({
             _id: id
-        }).fetch();
+        });
     }
     PlayerController.getPlayer = getPlayer;
-    function addPlayer(userName) {
+    function addPlayer(userName, password) {
+        var player = DB.findOne({
+            Username: userName
+        });
+        if(player != null) {
+            if(player.Password == password) {
+                return player;
+            } else {
+                return null;
+            }
+        }
         var newPlayer = {
-            userName: userName
+            Username: userName,
+            Password: password
         };
         var id = DB.insert(newPlayer);
         return getPlayer(id);
@@ -21,6 +32,7 @@ var PlayerController;
         if(allPlayers.count() > 0) {
             return allPlayers.fetch();
         }
+        return null;
     }
     PlayerController.getAll = getAll;
 })(PlayerController || (PlayerController = {}));
