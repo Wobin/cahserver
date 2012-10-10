@@ -11,6 +11,7 @@ var TestSuite;
         var id = card._id;
         assert(card != null, "Create Card");
         CardController.addCondition(id, "Test Condition", 3);
+        card = CardController.getCard(id);
         assert(card.Conditions[0].Condition == "Test Condition", "Add Condition");
         CardController.removeCard(id);
         assert(CardController.getCard(id) == null, "Remove Card");
