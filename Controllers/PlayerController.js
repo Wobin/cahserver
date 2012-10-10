@@ -11,6 +11,7 @@ var PlayerController;
         var player = DB.findOne({
             Username: userName
         });
+        console.log(player);
         if(player != null) {
             if(player.Password == password) {
                 return player;
