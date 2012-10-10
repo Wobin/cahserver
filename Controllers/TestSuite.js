@@ -21,12 +21,12 @@ var TestSuite;
         console.log("Player Tests");
         var player = PlayerController.addPlayer("TestPlayer933", "test");
         var getFromDB = PlayerController.getPlayer(player._id);
-        assert(getFromDB.UserName == "TestPlayer933", "Create Player");
+        assert(getFromDB.Username == "TestPlayer933", "Create Player");
         var login = PlayerController.addPlayer("TestPlayer933", "test");
-        assert(login.UserName == "TestPlayer933", "Login Player");
+        assert(login.Username == "TestPlayer933", "Login Player");
         var loginfail = PlayerController.addPlayer("TestPlayer933", "fail");
         assert(loginfail == null, "Invalid Login");
-        PlayerController.deletePlayer(player.UserName, player.Password);
+        PlayerController.deletePlayer(player.Username, player.Password);
         var retrievePlayer = PlayerController.getPlayer(player._id);
         assert(retrievePlayer == null, "Delete Player");
     }
