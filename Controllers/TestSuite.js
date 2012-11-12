@@ -6,6 +6,9 @@ var TestSuite;
         PlayerTests();
     }
     TestSuite.RunTests = RunTests;
+    function assert(outcome, description) {
+        console.log("Test: " + (outcome ? "pass " : "fail ") + "- " + description);
+    }
     function CardTests() {
         console.log("Card Tests");
         var card = CardController.addCard("Test Card", "Black");
@@ -30,8 +33,22 @@ var TestSuite;
         var retrievePlayer = PlayerController.getPlayer(player._id);
         assert(retrievePlayer == null, "Delete Player");
     }
-    function assert(outcome, description) {
-        console.log("Test: " + (outcome ? "pass " : "fail ") + "- " + description);
+    function GameTests() {
+        console.log("Game Tests");
+        var player1 = PlayerController.addPlayer("TestPlayer1", "test");
+        var player2 = PlayerController.addPlayer("TestPlayer2", "test");
+        var player3 = PlayerController.addPlayer("TestPlayer3", "test");
+        var player4 = PlayerController.addPlayer("TestPlayer4", "test");
+        var player5 = PlayerController.addPlayer("TestPlayer5", "test");
+        var newGame = GameController.createGame();
+        assert(newGame != null, "Game not created");
+        console.log("New Game created: " + newGame.GameName);
+        GameController.addPlayer(newGame._id, player1._id);
+        PlayerController.deletePlayer("TestPlayer1", "test");
+        PlayerController.deletePlayer("TestPlayer2", "test");
+        PlayerController.deletePlayer("TestPlayer3", "test");
+        PlayerController.deletePlayer("TestPlayer4", "test");
+        PlayerController.deletePlayer("TestPlayer5", "test");
     }
 })(TestSuite || (TestSuite = {}));
 

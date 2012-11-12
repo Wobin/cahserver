@@ -5,6 +5,114 @@ var GameController;
         return DB.findOne(game);
     }
     GameController.getGame = getGame;
+    function createGame(name) {
+        if(name == null) {
+            name = getRandomName();
+        }
+        name = _.reject(name, function (letter) {
+            return letter == ';' || letter == " ";
+        });
+        var newGame = {
+            GameName: name
+        };
+        var id = DB.insert(newGame);
+        var newGame = getGame(id);
+        this.newCardPool(newGame);
+        return newGame;
+    }
+    GameController.createGame = createGame;
+    function getRandomName() {
+        var GameNames = ([
+            "frog", 
+            "womble", 
+            "cabbage", 
+            "bing", 
+            "advice", 
+            "anger", 
+            "answer", 
+            "apple", 
+            "arithmetic", 
+            "badge", 
+            "basket", 
+            "basketball", 
+            "battle", 
+            "beast", 
+            "beetle", 
+            "beggar", 
+            "brain", 
+            "branch", 
+            "bubble", 
+            "bucket", 
+            "cactus", 
+            "cannon", 
+            "cattle", 
+            "celery", 
+            "cellar", 
+            "cloth", 
+            "coach", 
+            "coast", 
+            "crate", 
+            "cream", 
+            "daughter", 
+            "donkey", 
+            "drug", 
+            "earthquake", 
+            "feast", 
+            "fifth", 
+            "finger", 
+            "flock", 
+            "frame", 
+            "furniture", 
+            "geese", 
+            "ghost", 
+            "giraffe", 
+            "governor", 
+            "honey", 
+            "hope", 
+            "hydrant", 
+            "icicle", 
+            "income", 
+            "island", 
+            "jeans", 
+            "judge", 
+            "lace", 
+            "lamp", 
+            "lettuce", 
+            "marble", 
+            "month", 
+            "north", 
+            "ocean", 
+            "patch", 
+            "plane", 
+            "playground", 
+            "poison", 
+            "riddle", 
+            "rifle", 
+            "scale", 
+            "seashore", 
+            "sheet", 
+            "sidewalk", 
+            "skate", 
+            "slave", 
+            "sleet", 
+            "smoke", 
+            "stage", 
+            "station", 
+            "thrill", 
+            "throat", 
+            "throne", 
+            "title", 
+            "toothbrush", 
+            "turkey", 
+            "underwear", 
+            "vacation", 
+            "vegetable", 
+            "visitor", 
+            "voyage", 
+            "year"
+        ]);
+        return _.shuffle(GameNames).pop() + _.shuffle(GameNames).pop() + _.shuffle(GameNames).pop();
+    }
     function ReImportCards() {
         CardController.removeAllCards();
         _.each(BaseCards.WhiteCards, function (card) {
@@ -46,23 +154,24 @@ var GameController;
         return game.WhiteCardPool.pop();
     }
     GameController.discardWhiteCard = discardWhiteCard;
-    function addPlayer(gameId, player) {
+    function addPlayer(gameId, playerId) {
         var game = DB.findOne(gameId);
+        var player = PlayerController.getPlayer(playerId);
         if(_.contains(_.pluck(game.Scoreboard, "Player"), player)) {
             return false;
         }
         game.Scoreboard.push({
-            Player: player,
+            Player: player._id,
             Score: 0,
             Points: 0
         });
         return true;
     }
     GameController.addPlayer = addPlayer;
-    function removePlayer(gameId, player) {
+    function removePlayer(gameId, playerId) {
         var game = DB.findOne(gameId);
         game.Scoreboard = _.reject(game.Scoreboard, function (score) {
-            return score.Player == player;
+            return score.Player._id == playerId;
         });
     }
     GameController.removePlayer = removePlayer;
