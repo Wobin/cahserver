@@ -4,6 +4,7 @@ var TestSuite;
         console.log("Commencing tests.... :");
         CardTests();
         PlayerTests();
+        GameTests();
     }
     TestSuite.RunTests = RunTests;
     function assert(outcome, description) {
@@ -41,14 +42,21 @@ var TestSuite;
         var player4 = PlayerController.addPlayer("TestPlayer4", "test");
         var player5 = PlayerController.addPlayer("TestPlayer5", "test");
         var newGame = GameController.createGame();
-        assert(newGame != null, "Game not created");
+        assert(newGame != null, "Game created");
         console.log("New Game created: " + newGame.GameName);
         GameController.addPlayer(newGame._id, player1._id);
+        GameController.addPlayer(newGame._id, player2._id);
+        GameController.addPlayer(newGame._id, player3._id);
+        GameController.addPlayer(newGame._id, player4._id);
+        GameController.addPlayer(newGame._id, player5._id);
+        assert(GameController.getGame(newGame._id).Scoreboard.length == 5, "We have 5 players");
         PlayerController.deletePlayer("TestPlayer1", "test");
         PlayerController.deletePlayer("TestPlayer2", "test");
         PlayerController.deletePlayer("TestPlayer3", "test");
         PlayerController.deletePlayer("TestPlayer4", "test");
         PlayerController.deletePlayer("TestPlayer5", "test");
+        GameController.deleteGame(newGame._id);
+        assert(GameController.getGame(newGame._id) == null, "Game deleted");
     }
 })(TestSuite || (TestSuite = {}));
 

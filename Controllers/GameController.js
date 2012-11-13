@@ -21,6 +21,10 @@ var GameController;
         return newGame;
     }
     GameController.createGame = createGame;
+    function deleteGame(gameId) {
+        DB.remove(gameId);
+    }
+    GameController.deleteGame = deleteGame;
     function getRandomName() {
         var GameNames = ([
             "frog", 
