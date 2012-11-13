@@ -162,6 +162,9 @@ var GameController;
         if(_.contains(_.pluck(game.Scoreboard, "Player"), player)) {
             return false;
         }
+        if(game.Scoreboard == undefined) {
+            game.Scoreboard = [];
+        }
         game.Scoreboard.push({
             Player: player._id,
             Score: 0,
