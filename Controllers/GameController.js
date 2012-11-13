@@ -163,12 +163,18 @@ var GameController;
             return false;
         }
         if(game.Scoreboard == undefined) {
-            game.Scoreboard = [];
+            DB.update(gameId, {
+                Scoreboard: []
+            });
         }
-        game.Scoreboard.push({
-            Player: player._id,
-            Score: 0,
-            Points: 0
+        DB.update(gameId, {
+            $addToSet: {
+                Scoreboard: {
+                    Player: player._id,
+                    Score: 0,
+                    Points: 0
+                }
+            }
         });
         return true;
     }
