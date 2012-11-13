@@ -9,9 +9,7 @@ var GameController;
         if(name == null) {
             name = getRandomName();
         }
-        name = _.reject(name, function (letter) {
-            return letter == ';' || letter == " ";
-        });
+        name.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
         var newGame = {
             GameName: name
         };
