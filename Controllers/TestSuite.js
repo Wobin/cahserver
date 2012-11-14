@@ -45,7 +45,7 @@ var TestSuite;
         assert(newGame != null, "Game created");
         console.log("New Game created: " + newGame.GameName);
         GameController.addPlayer(newGame._id, player1._id);
-        assert(GameController.getGame(newGame._id).Scoreboard != undefined, "Player added to game");
+        assert(newGame.Scoreboard != undefined, "Player added to game");
         GameController.addPlayer(newGame._id, player2._id);
         assert(GameController.getGame(newGame._id).Scoreboard.length == 2, "Two players added");
         GameController.addPlayer(newGame._id, player3._id);
