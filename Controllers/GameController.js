@@ -21,13 +21,12 @@ var GameController;
             name = getRandomName();
         }
         name.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
-        var newGame = {
+        var id = DB.insert({
             GameName: name
-        };
-        var id = DB.insert(newGame);
+        });
         var newGameCursor = getGameCursor(id);
         this.newCardPool(id);
-        return newGame;
+        return getGame(id);
     }
     GameController.createGame = createGame;
     function deleteGame(gameId) {
