@@ -47,11 +47,11 @@ var TestSuite;
         GameController.addPlayer(newGame._id, player1._id);
         assert(newGame.Scoreboard != undefined, "Player added to game");
         GameController.addPlayer(newGame._id, player2._id);
-        assert(GameController.getGame(newGame._id).Scoreboard.length == 2, "Two players added");
+        assert(newGame.Scoreboard.length == 2, "Two players added");
         GameController.addPlayer(newGame._id, player3._id);
         GameController.addPlayer(newGame._id, player4._id);
         GameController.addPlayer(newGame._id, player5._id);
-        assert(GameController.getGame(newGame._id).Scoreboard.length == 5, "We have 5 players: " + _.reduce(_.pluck(GameController.getPlayers(newGame._id), "Username"), function (memo, name) {
+        assert(newGame.Scoreboard.length == 5, "We have 5 players: " + _.reduce(_.pluck(newGame.Scoreboard, "Username"), function (memo, name) {
             return memo + " " + name;
         }, ""));
         PlayerController.deletePlayer("TestPlayer1", "test");
