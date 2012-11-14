@@ -1,7 +1,7 @@
 var TestSuite;
 (function (TestSuite) {
+    var Tests = new Meteor.Collection("Tests");
     function RunTests() {
-        var Tests = new Meteor.Collection("Tests");
         console.log("Commencing tests.... :");
         if(Tests.find({
             failed: "1"
@@ -16,7 +16,6 @@ var TestSuite;
     function assert(outcome, description) {
         console.log("Test: " + (outcome ? "pass " : "fail ") + "- " + description);
         if(!outcome) {
-            var Tests = new Meteor.Collection("Tests");
             Tests.insert({
                 failed: "1"
             });
