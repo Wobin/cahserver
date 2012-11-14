@@ -24,7 +24,6 @@ var GameController;
         var id = DB.insert({
             GameName: name
         });
-        var newGameCursor = getGameCursor(id);
         this.newCardPool(id);
         return getGame(id);
     }
