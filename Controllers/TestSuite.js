@@ -1,7 +1,13 @@
 var TestSuite;
 (function (TestSuite) {
     function RunTests() {
+        var Tests = new Meteor.Collection("Tests");
         console.log("Commencing tests.... :");
+        if(Tests.find({
+            failed: "1"
+        }).count() > 0) {
+            return;
+        }
         CardTests();
         PlayerTests();
         GameTests();
@@ -9,6 +15,12 @@ var TestSuite;
     TestSuite.RunTests = RunTests;
     function assert(outcome, description) {
         console.log("Test: " + (outcome ? "pass " : "fail ") + "- " + description);
+        if(!outcome) {
+            var Tests = new Meteor.Collection("Tests");
+            Tests.insert({
+                failed: "1"
+            });
+        }
     }
     function CardTests() {
         console.log("Card Tests");
