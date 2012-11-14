@@ -1,8 +1,15 @@
 var GameController;
 (function (GameController) {
     var DB = new Meteor.Collection("Games");
+    function getGameCursor(game) {
+        return DB.find(game);
+    }
+    GameController.getGameCursor = getGameCursor;
+    function getGameFromCursor(game) {
+        return game.fetch[0];
+    }
     function getGame(game) {
-        return DB.findOne(game);
+        return getGameFromCursor(getGameCursor(game));
     }
     GameController.getGame = getGame;
     function getGames() {
@@ -18,8 +25,8 @@ var GameController;
             GameName: name
         };
         var id = DB.insert(newGame);
-        var newGame = getGame(id);
-        this.newCardPool(newGame);
+        var newGameCursor = getGameCursor(id);
+        this.newCardPool(id);
         return newGame;
     }
     GameController.createGame = createGame;
@@ -139,21 +146,57 @@ var GameController;
     }
     GameController.ReImportCards = ReImportCards;
     function newCardPool(gameId) {
-        var game = DB.findOne(gameId);
-        game.WhiteCardPool = _.shuffle(CardController.getAllWhiteCards());
-        game.BlackCardPool = _.shuffle(CardController.getAllBlackCards());
+        DB.update(gameId, {
+            $addToSet: {
+                WhiteCardPool: {
+                    $each: _.shuffle(CardController.getAllWhiteCards())
+                }
+            }
+        });
+        DB.update(gameId, {
+            $addToSet: {
+                BlackCardPool: {
+                    $each: _.shuffle(CardController.getAllBlackCards())
+                }
+            }
+        });
     }
     GameController.newCardPool = newCardPool;
     function retrieveWhiteHand(gameId) {
-        var game = DB.findOne(gameId);
-        return game.WhiteCardPool.splice(0, 10);
+        return retrieveWhiteCard(gameId, 10);
     }
     GameController.retrieveWhiteHand = retrieveWhiteHand;
     function retrieveBlackCard(gameId) {
-        var game = DB.findOne(gameId);
-        return game.BlackCardPool.pop();
+        var hand = DB.find(gameId, {
+            $pop: {
+                BlackCardPool: 1
+            }
+        }).fetch();
+        DB.update(gameId, {
+            $pop: {
+                BlackCardPool: 1
+            }
+        });
+        return hand;
     }
     GameController.retrieveBlackCard = retrieveBlackCard;
+    function retrieveWhiteCard(gameId, count) {
+        if(count == undefined) {
+            count = 1;
+        }
+        var hand = DB.find(gameId, {
+            $pop: {
+                WhiteCardPool: count
+            }
+        }).fetch();
+        DB.update(gameId, {
+            $pop: {
+                WhiteCardPool: count
+            }
+        });
+        return hand;
+    }
+    GameController.retrieveWhiteCard = retrieveWhiteCard;
     function discardWhiteCard(gameId, card) {
         var game = DB.findOne(gameId);
         game.WhiteDisCards.push(card);
@@ -201,7 +244,7 @@ var GameController;
     }
     GameController.currentGames = currentGames;
     function getPlayers(gameId) {
-        return _.map(_.pluck(GameController.getGame(gameId).Scoreboard, "Player"), function (player) {
+        return _.map(_.pluck(getGame(gameId).Scoreboard, "Player"), function (player) {
             return PlayerController.getPlayer(player);
         });
     }
