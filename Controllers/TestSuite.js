@@ -5,7 +5,7 @@ var TestSuite;
         console.log("Commencing tests.... :");
         if(Tests.find({
             failed: {
-                $gt: new Date().getTime() + 5000
+                $gt: new Date().getTime() - 5000
             }
         }).count() > 0) {
             return;
