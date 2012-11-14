@@ -51,7 +51,9 @@ var TestSuite;
         GameController.addPlayer(newGame._id, player3._id);
         GameController.addPlayer(newGame._id, player4._id);
         GameController.addPlayer(newGame._id, player5._id);
-        assert(GameController.getGame(newGame._id).Scoreboard.length == 5, "We have 5 players");
+        assert(GameController.getGame(newGame._id).Scoreboard.length == 5, "We have 5 players: " + _.reduce(_.pluck(GameController.getPlayers(newGame._id), "Username"), function (memo, name) {
+            return memo + " " + name;
+        }, ""));
         PlayerController.deletePlayer("TestPlayer1", "test");
         PlayerController.deletePlayer("TestPlayer2", "test");
         PlayerController.deletePlayer("TestPlayer3", "test");

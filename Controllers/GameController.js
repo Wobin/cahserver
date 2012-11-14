@@ -196,6 +196,12 @@ var GameController;
         }).fetch();
     }
     GameController.currentGames = currentGames;
+    function getPlayers(gameId) {
+        return _.map(_.pluck(GameController.getGame(gameId).Scoreboard, "Player"), function (player) {
+            return PlayerController.getPlayer(player);
+        });
+    }
+    GameController.getPlayers = getPlayers;
 })(GameController || (GameController = {}));
 
 //@ sourceMappingURL=GameController.js.map
