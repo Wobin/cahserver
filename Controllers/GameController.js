@@ -5,6 +5,10 @@ var GameController;
         return DB.findOne(game);
     }
     GameController.getGame = getGame;
+    function getGames() {
+        return DB.find();
+    }
+    GameController.getGames = getGames;
     function createGame(name) {
         if(name == null) {
             name = getRandomName();

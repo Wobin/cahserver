@@ -12,6 +12,9 @@ if(Meteor.is_client) {
 }
 if(Meteor.is_server) {
     Meteor.startup(function () {
+        Meteor.publish("all-games", function () {
+            return GameController.getGames();
+        });
         TestSuite.RunTests();
     });
 }
