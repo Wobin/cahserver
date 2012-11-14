@@ -196,9 +196,12 @@ var GameController;
     }
     GameController.retrieveWhiteCard = retrieveWhiteCard;
     function discardWhiteCard(gameId, card) {
-        var game = DB.findOne(gameId);
-        game.WhiteDisCards.push(card);
-        return game.WhiteCardPool.pop();
+        DB.update(gameId, {
+            $addToSet: {
+                WhiteDisCards: card
+            }
+        });
+        return retrieveWhiteCard(gameId, 1)[0];
     }
     GameController.discardWhiteCard = discardWhiteCard;
     function addPlayer(gameId, playerId) {
