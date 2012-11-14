@@ -4,7 +4,9 @@ var TestSuite;
     function RunTests() {
         console.log("Commencing tests.... :");
         if(Tests.find({
-            failed: "1"
+            failed: {
+                $gt: new Date().getTime() + 5000
+            }
         }).count() > 0) {
             return;
         }
@@ -17,7 +19,7 @@ var TestSuite;
         console.log("Test: " + (outcome ? "pass " : "fail ") + "- " + description);
         if(!outcome) {
             Tests.insert({
-                failed: "1"
+                failed: new Date().getTime()
             });
         }
     }
